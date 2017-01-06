@@ -2,13 +2,13 @@
 
 Bolsa de Emprego - Initial  @ Wiremaze.
 
-## License
+## Licença
 
 Todo o código presente em [Bolsa de Emprego]()
 está disponível sob as Licenças MIT e Beerware. Ver
 [LICENSE.md](LICENSE.md) para mais details.
 
-## Getting started
+## Como começar
 
 Para começar a aplicação, faça clone do repositório e depois install as gems necessárias_
 
