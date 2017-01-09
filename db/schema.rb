@@ -12,21 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170109100749) do
 
-  create_table "comapnies", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "email"
-    t.string   "morada"
-    t.string   "cpostal"
-    t.string   "localidade"
-    t.string   "contacto"
-    t.string   "pagina"
-    t.string   "nif"
-    t.string   "atividade_profissional"
-    t.string   "apresentacao"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "companies", force: :cascade do |t|
     t.string   "nome"
     t.string   "email"

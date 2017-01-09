@@ -8,9 +8,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render 'layouts/shim' %>
   </head>
+  <%= render 'layouts/navbar' %>
   <body>
   <%= render 'layouts/header' %>
     <div class="container">
+    <% flash.each do |message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% end %>
       <%= yield %>
     </div>
   </body>

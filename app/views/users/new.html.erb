@@ -1,3 +1,67 @@
-<% provide(:title, 'Registo Utilizadores') %>
-<h1>Registo de novos utilizadores</h1>
-<p>This will be a signup page for new users.</p>
+<% provide(:title, 'Registo de candidatos') %>
+<h1>Registo de candidatos</h1>
+
+<div class="row">
+  <!-- <div class="col-md-6 col-md-offset-3"> -->
+    <%= simple_form_for(@user, url: signup_path) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control'  %>
+      <div class="form-group">
+      <%= f.label :password %> <%= f.password_field :password, class: 'form-control'  %>
+
+      <%= f.label :password_confirmation, "Confirme a sua password" %>
+      <%= f.password_field :password_confirmation, class: 'form-control'  %>
+      </div>
+      <%= f.label :nome %>
+      <%= f.text_field :nome, class: 'form-control'  %>
+
+      <!-- FALTA IMPLEMENTAR FOTO FILE-->
+
+      <%= f.label :morada %>
+      <%= f.text_area :morada, class: 'form-control'  %>
+
+      <%= f.label :cpostal %>
+      <%= f.text_field :cpostal, class: 'form-control'  %>
+
+      <%= f.label :localidade %>
+      <%= f.text_field :localidade, class: 'form-control'  %>
+
+      <%= f.label :contacto %>
+      <%= f.text_field :contacto, class: 'form-control'  %>
+
+      <%= f.label :pagina %>
+      <%= f.text_field :pagina, class: 'form-control'  %>
+
+      <%= f.label :d_nascimento %>
+      <%= f.date_field :d_nascimento, class: 'form-control' %>
+
+      <%= f.label :cartao_cidadao %>
+      <%= f.text_field :cartao_cidadao, class: 'form-control' %>
+
+      <!--- FALTA IMPLEMENTAR CV FILE -->
+
+      <%= f.label :area_profissional %>
+      <%= f.select :area_profissional, ['option1', 'option2'], class: 'form-control' %>
+
+      <%= f.label :apresentacao %>
+      <%= f.text_area :apresentacao, class: 'form-control' %>
+
+      <%= f.label :hab_literarias %>
+      <%= f.select :hab_literarias, ['option1', 'option2'], class: 'form-control' %>
+
+      <%= f.label :hab_ds %>
+      <%= f.text_area :hab_ds, class: 'form-control' %>
+
+      <%= f.label :situacao %>
+      <%= f.select :situacao, ['option1', 'option2'], class: 'form-control' %>
+
+      <%= f.label :experiencia %>
+      <%= f.text_area :experiencia, class: 'form-control' %>
+
+      <%= f.submit "Criar a minha conta", class: "btn btn-primary" %>
+    <% end %>
+  <!-- </div> -->
+</div>
