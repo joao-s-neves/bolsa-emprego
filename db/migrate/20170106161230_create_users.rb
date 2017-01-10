@@ -8,14 +8,8 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :localidade
       t.string :contacto
       t.string :pagina
-      t.datetime :d_nascimento
-      t.string :cartao_cidadao
-      t.string :area_profissional
       t.string :apresentacao
-      t.string :hab_literarias
-      t.string :hab_ds
-      t.string :situacao
-      t.string :experiencia
+      t.string :type
 
       t.timestamps
     end

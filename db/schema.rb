@@ -10,22 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109100749) do
+ActiveRecord::Schema.define(version: 20170110111735) do
+
+  create_table "candidates", force: :cascade do |t|
+    t.datetime "d_nascimento"
+    t.string   "cartao_cidadao"
+    t.string   "area_profissional"
+    t.string   "hab_literarias"
+    t.string   "hab_ds"
+    t.string   "situacao"
+    t.string   "experiencia"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["user_id"], name: "index_candidates_on_user_id"
+  end
 
   create_table "companies", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "email"
-    t.string   "morada"
-    t.string   "cpostal"
-    t.string   "localidade"
-    t.string   "contacto"
-    t.string   "pagina"
     t.string   "nif"
     t.string   "atividade_profissional"
-    t.string   "apresentacao"
+    t.integer  "user_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "password_digest"
+    t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,16 +43,10 @@ ActiveRecord::Schema.define(version: 20170109100749) do
     t.string   "localidade"
     t.string   "contacto"
     t.string   "pagina"
-    t.datetime "d_nascimento"
-    t.string   "cartao_cidadao"
-    t.string   "area_profissional"
     t.string   "apresentacao"
-    t.string   "hab_literarias"
-    t.string   "hab_ds"
-    t.string   "situacao"
-    t.string   "experiencia"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "password_digest"
   end
 

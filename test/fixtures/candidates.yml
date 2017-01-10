@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  d_nascimento: 2017-01-10 11:17:35
+  cartao_cidadao: MyString
+  area_profissional: MyString
+  hab_literarias: MyString
+  hab_ds: MyString
+  situacao: MyString
+  experiencia: MyString
+
+two:
+  d_nascimento: 2017-01-10 11:17:35
+  cartao_cidadao: MyString
+  area_profissional: MyString
+  hab_literarias: MyString
+  hab_ds: MyString
+  situacao: MyString
+  experiencia: MyString

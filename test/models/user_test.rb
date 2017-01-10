@@ -6,10 +6,11 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(nome: "Example User", email: "user@example.com",
                                    password: "foobar", password_confirmation: "foobar",
                                    morada: "Rua X", cpostal: "0000-000",  localidade: "Porto",
-                                   contacto: "911111111",  pagina: "exemplo.com",   d_nascimento: "14-03-1996",
-                                   cartao_cidadao:"11111111", area_profissional: "programador",
-                                   apresentacao: "lorem ipsum",  hab_literarias: "secundario",
-                                   hab_ds: "lorem ipsum", situacao: "desempregado", experiencia: "lorem ipsum")
+                                   contacto: "911111111",  pagina: "exemplo.com", apresentacao: "lorem ipsum")
+                                  #   d_nascimento: "14-03-1996",
+                                  # cartao_cidadao:"11111111", area_profissional: "programador",
+                                  # mhab_literarias: "secundario",
+                                  # hab_ds: "lorem ipsum", situacao: "desempregado", experiencia: "lorem ipsum")
   end
 
   test "should be valid" do
@@ -51,43 +52,8 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "birth date should be present" do
-    @user.d_nascimento = "     "
-    assert_not @user.valid?
-  end
-
-  test "identity should be present" do
-    @user.cartao_cidadao = "     "
-    assert_not @user.valid?
-  end
-
-  test "professional area activity should be present" do
-    @user.area_profissional = "     "
-    assert_not @user.valid?
-  end
-
   test "presentation should be present" do
     @user.apresentacao = "     "
-    assert_not @user.valid?
-  end
-
-  test "qualification level should be present" do
-    @user.hab_literarias = "     "
-    assert_not @user.valid?
-  end
-
-  test "qualification level description should be present" do
-    @user.hab_ds = "     "
-    assert_not @user.valid?
-  end
-
-  test "professional situation should be present" do
-    @user.situacao = "     "
-    assert_not @user.valid?
-  end
-
-  test "experience should be present" do
-    @user.experiencia = "     "
     assert_not @user.valid?
   end
 

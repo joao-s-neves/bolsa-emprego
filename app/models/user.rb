@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  has_one :candidate
+  has_one :company
+  accepts_nested_attributes_for :candidate
+  accepts_nested_attributes_for :company
+
   before_save { self.email = email.downcase }
   validates :nome, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -12,12 +17,5 @@ class User < ApplicationRecord
   validates :localidade, presence: true
   validates :contacto, presence: true
   validates :pagina, presence: true
-  validates :d_nascimento, presence: true
-  validates :cartao_cidadao, presence: true
-  validates :area_profissional, presence: true
   validates :apresentacao, presence: true
-  validates :hab_literarias, presence: true
-  validates :hab_ds, presence: true
-  validates :situacao, presence: true
-  validates :experiencia, presence: true
 end

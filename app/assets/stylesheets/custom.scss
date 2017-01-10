@@ -75,10 +75,13 @@ p {
 }
 
 /* navbar */
-#teste{
-display: inline-block;
+//#teste {
+//  text-align: right;
+//}
+
+.container ul li{
+  position:relative;
   float: left;
-  padding-left: 250px;
 }
 
 

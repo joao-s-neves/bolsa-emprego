@@ -35,31 +35,38 @@
       <%= f.label :pagina %>
       <%= f.text_field :pagina, class: 'form-control'  %>
 
-      <%= f.label :d_nascimento %>
-      <%= f.date_field :d_nascimento, class: 'form-control' %>
+      <%= fields_for :candidate do |c| %>
 
-      <%= f.label :cartao_cidadao %>
-      <%= f.text_field :cartao_cidadao, class: 'form-control' %>
+      <%= c.label :d_nascimento %>
+      <%= c.date_field :d_nascimento, class: 'form-control' %>
+
+      <%= c.label :cartao_cidadao %>
+      <%= c.text_field :cartao_cidadao, class: 'form-control' %>
 
       <!--- FALTA IMPLEMENTAR CV FILE -->
 
-      <%= f.label :area_profissional %>
-      <%= f.select :area_profissional, ['option1', 'option2'], class: 'form-control' %>
+      <%= c.label :area_profissional %>
+      <%= c.select :area_profissional, ['option1', 'option2'], class: 'form-control' %>
+      <% end %>
 
       <%= f.label :apresentacao %>
       <%= f.text_area :apresentacao, class: 'form-control' %>
 
-      <%= f.label :hab_literarias %>
-      <%= f.select :hab_literarias, ['option1', 'option2'], class: 'form-control' %>
+      <%= fields_for :candidate do |c| %>
 
-      <%= f.label :hab_ds %>
-      <%= f.text_area :hab_ds, class: 'form-control' %>
+      <%= c.label :hab_literarias %>
+      <%= c.select :hab_literarias, ['option1', 'option2'], class: 'form-control' %>
 
-      <%= f.label :situacao %>
-      <%= f.select :situacao, ['option1', 'option2'], class: 'form-control' %>
+      <%= c.label :hab_ds %>
+      <%= c.text_area :hab_ds, class: 'form-control' %>
 
-      <%= f.label :experiencia %>
-      <%= f.text_area :experiencia, class: 'form-control' %>
+      <%= c.label :situacao %>
+      <%= c.select :situacao, ['option1', 'option2'], class: 'form-control' %>
+
+      <%= c.label :experiencia %>
+      <%= c.text_area :experiencia, class: 'form-control' %>
+      <% end %>
+
 
       <%= f.submit "Criar a minha conta", class: "btn btn-primary" %>
     <% end %>

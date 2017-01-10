@@ -8,10 +8,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: { user: { nome: "  ", email: "user@example",
                                    password: "foo", password_confirmation: "bar",
                                    morada: "Rua X", cpostal: "0000-000",  localidade: "Porto",
-                                   contacto: "911111111",  pagina: "exemplo.com",   d_nascimento: "14-03-1996",
-                                   cartao_cidadao:"11111111", area_profissional: "programador",
-                                   apresentacao: "lorem ipsum",  hab_literarias: "secundario",
-                                   hab_ds: "lorem ipsum", situacao: "desempregado", experiencia: "lorem ipsum" } }
+                                   contacto: "911111111",  pagina: "exemplo.com",  apresentacao: "lorem ipsum"} }
     end
     assert_template 'users/new'
     #assert_select 'div#error_explanation'
@@ -24,10 +21,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: { user: { nome: " Example User", email: "user@example.com",
                                    password: "password", password_confirmation: "password",
                                    morada: "Rua X", cpostal: "0000-000",  localidade: "Porto",
-                                   contacto: "911111111",  pagina: "exemplo.com",   d_nascimento: "14-03-1996",
-                                   cartao_cidadao:"11111111", area_profissional: "programador",
-                                   apresentacao: "lorem ipsum",  hab_literarias: "secundario",
-                                   hab_ds: "lorem ipsum", situacao: "desempregado", experiencia: "lorem ipsum" } }
+                                   contacto: "911111111",  pagina: "exemplo.com",  apresentacao: "lorem ipsum"} }
     follow_redirect!
     assert_template 'users/show'
     assert_not flash.empty?

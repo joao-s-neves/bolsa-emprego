@@ -8,14 +8,7 @@ one:
   localidade: MyString
   contacto: MyString
   pagina: MyString
-  d_nascimento: 2017-01-06 16:12:30
-  cartao_cidadao: MyString
-  area_profissional: MyString
   apresentacao: MyString
-  hab_literarias: MyString
-  hab_ds: MyString
-  situacao: MyString
-  experiencia: MyString
 
 two:
   nome: MyString
@@ -25,11 +18,4 @@ two:
   localidade: MyString
   contacto: MyString
   pagina: MyString
-  d_nascimento: 2017-01-06 16:12:30
-  cartao_cidadao: MyString
-  area_profissional: MyString
   apresentacao: MyString
-  hab_literarias: MyString
-  hab_ds: MyString
-  situacao: MyString
-  experiencia: MyString
