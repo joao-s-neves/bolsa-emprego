@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    #@candidate = Candidate.find(params[:id])
   end
 
   def new
@@ -10,8 +11,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @candidate = Candidate.new(candidate_params)
-    if @user.save && @candidate.save
+    if @user.save
+      @user.tipo = "C"
+      @user.save
       flash[:success] = "Bem-vindo à Bolsa de Emprego!"
       redirect_to @user
     else
@@ -19,14 +21,11 @@ class UsersController < ApplicationController
     end
   end
 
+
   def user_params
       params.require(:user).permit(:nome, :email, :password,
                                    :password_confirmation, :morada, :cpostal,
                                    :localidade, :contacto,  :pagina, :apresentacao, candidate_attributes: [:d_nascimento, :cartao_cidadao, :area_profissional,
-                                                                                                                                                    :hab_literarias, :hab_ds, :situacao, :experiencia, :userid])
-    end
-
-    def candidate_params
-      params.require(:candidate).permit(:d_nascimento, :cartao_cidadao, :area_profissional, :hab_literarias, :hab_ds, :situacao, :experiencia, :userid)
+                                                                                                                                                    :hab_literarias, :hab_ds, :situacao, :experiencia, :user_id])
     end
 end

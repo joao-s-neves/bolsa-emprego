@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170110111735) do
     t.string   "contacto"
     t.string   "pagina"
     t.string   "apresentacao"
-    t.string   "type"
+    t.string   "tipo"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"

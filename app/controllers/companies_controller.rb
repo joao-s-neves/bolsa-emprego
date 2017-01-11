@@ -1,26 +1,29 @@
 class CompaniesController < ApplicationController
   def show
-    @company = Company.find(params[:id])
+    @user = User.find(params[:id])
+    #@company = Company.find(params[:id])
   end
 
   def new
-    @company = Company.new
+    @user = User.new
+    @user.build_company
   end
 
   def create
-    @company = Company.new(company_params)
-    if @company.save
+    @user = User.new(user_params)
+    if @user.save
+      @user.tipo = "E"
+      @user.save
       flash[:success] = "Bem-vindo à Bolsa de Emprego!"
-      redirect_to @company
+      redirect_to @user
     else
       render 'new'
     end
   end
 
-  def company_params
-      params.require(:company).permit(:nome, :email, :password,
+  def user_params
+      params.require(:user).permit(:nome, :email, :password,
                                    :password_confirmation, :morada, :cpostal,
-                                   :localidade, :contacto,  :pagina, :nif,
-                                   :atividade_profissional, :apresentacao)
+                                   :localidade, :contacto,  :pagina, :apresentacao, company_attributes: [:nif, :atividade_profissional])
     end
 end

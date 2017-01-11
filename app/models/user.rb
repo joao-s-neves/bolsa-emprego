@@ -5,6 +5,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :company
 
   before_save { self.email = email.downcase }
+  #before_save :user_type
   validates :nome, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -18,4 +19,16 @@ class User < ApplicationRecord
   validates :contacto, presence: true
   validates :pagina, presence: true
   validates :apresentacao, presence: true
+  #validates :type, presence: true
+
+  #def user_type
+  # if params[:controller].to_s == 'users' && params[:action].to_s == 'create'
+  #    @type = "C"
+  #    @type.save
+  #  elsif params[:controller].to_s ==  'companies' && params[:action].to_s == 'create'
+  #    @type = "E"
+  #   @type.save
+  #  end
+  #end
+
 end

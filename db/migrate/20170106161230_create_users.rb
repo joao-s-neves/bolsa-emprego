@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :contacto
       t.string :pagina
       t.string :apresentacao
-      t.string :type
+      t.string :tipo
 
       t.timestamps
     end

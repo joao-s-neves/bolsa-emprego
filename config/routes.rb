@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get  '/signup_c',  to: 'users#new'
   get  '/signup_e',  to: 'companies#new'
   get  '/signup',  to: 'static_pages#signup'
-  post '/signup',  to: 'users#create'
-  post '/signup',  to: 'companies#create'
+  post '/signup_c',  to: 'users#create'
+  post '/signup_e',  to: 'companies#create'
 end
