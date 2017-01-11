@@ -1,21 +1,12 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixturelog_in @users at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  nome: MyString
-  email: MyString
-  morada: MyString
-  cpostal: MyString
-  localidade: MyString
-  contacto: MyString
-  pagina: MyString
-  apresentacao: MyString
-
-two:
-  nome: MyString
-  email: MyString
-  morada: MyString
-  cpostal: MyString
-  localidade: MyString
-  contacto: MyString
-  pagina: MyString
-  apresentacao: MyString
+neves:
+  nome: Neves Exemplo
+  email: neves@exemplo.com
+  password_digest: <%= User.digest('password') %>
+  morada: Rua de Exemplo
+  cpostal: 1000-000
+  localidade: Exemplo
+  contacto: Exemplo
+  pagina: Exemplo
+  apresentacao: Exemplo

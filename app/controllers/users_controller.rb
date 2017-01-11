@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.tipo = "C"
       @user.save
+      log_in @user
       flash[:success] = "Bem-vindo à Bolsa de Emprego!"
       redirect_to @user
     else

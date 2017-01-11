@@ -21,14 +21,10 @@ class User < ApplicationRecord
   validates :apresentacao, presence: true
   #validates :type, presence: true
 
-  #def user_type
-  # if params[:controller].to_s == 'users' && params[:action].to_s == 'create'
-  #    @type = "C"
-  #    @type.save
-  #  elsif params[:controller].to_s ==  'companies' && params[:action].to_s == 'create'
-  #    @type = "E"
-  #   @type.save
-  #  end
-  #end
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
 
 end

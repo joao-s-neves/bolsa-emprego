@@ -24,7 +24,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                    contacto: "911111111",  pagina: "exemplo.com",  apresentacao: "lorem ipsum"} }
     follow_redirect!
     assert_template 'users/show'
-    assert_not flash.empty?
+    assert is_logged_in?
   end
 end
 end
