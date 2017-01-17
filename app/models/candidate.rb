@@ -1,11 +1,13 @@
 class Candidate < ApplicationRecord
-  belongs_to :user
+  has_one :user
+  accepts_nested_attributes_for :user
 
-  validates :d_nascimento, presence: true
-  validates :cartao_cidadao, presence: true
-  validates :area_profissional, presence: true
-  validates :hab_literarias, presence: true
-  validates :hab_ds, presence: true
-  validates :situacao, presence: true
-  validates :experiencia, presence: true
+  belongs_to :habilitation, required: false
+  belongs_to :professional_area
+  belongs_to :professional_situation
+
+  validates :birth_date, presence: true
+  validates :document, presence: true
+  validates :habilitation_description, presence: true
+  validates :experience, presence: true
 end

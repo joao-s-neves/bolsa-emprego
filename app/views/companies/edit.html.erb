@@ -1,0 +1,60 @@
+<% provide(:title, 'Registo de entidades') %>
+<% provide(:button_text, 'Ok') %>
+<h1>Editar Entidade</h1>
+
+<div class="row">
+  <!-- <div class="col-md-6 col-md-offset-3"> -->
+    <%= simple_form_for(@company) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <!--- JOIN TABLE USER -->
+      <%= f.fields_for :user, @user do |u| %>
+      <%#= render 'shared/new' %>
+      <%= u.label :email %>
+      <%= u.email_field :email, class: 'form-control'  %>
+
+
+
+      <%= u.label :name %>
+      <%= u.text_field :name, class: 'form-control'  %>
+
+      <!-- FALTA IMPLEMENTAR FOTO FILE-->
+      <div class="gravatar_edit">
+      <%#= gravatar_for @user %>
+      <a href="http://gravatar.com/emails" target="_blank">Foto</a>
+      </div>
+
+      <%= u.label :address, "Morada" %>
+      <%= u.text_area :address, class: 'form-control'  %>
+
+      <%= u.label :zip_code, "Código Postal" %>
+      <%= u.text_field :zip_code, class: 'form-control'  %>
+
+      <%= u.label :city, "Localidade" %>
+      <%= u.text_field :city, class: 'form-control'  %>
+
+      <%= u.label :contact, "Contacto" %>
+      <%= u.text_field :contact, class: 'form-control'  %>
+
+      <%= u.label :page, "Página pessoal" %>
+      <%= u.text_field :page, class: 'form-control'  %>
+
+      <%= u.label :presentation, "Apresentação" %>
+      <%= u.text_area :apresentacao, class: 'tinymce' %>
+      <%= tinymce %>
+      <% end %>
+      <!-- END -->
+
+      <%= f.label :nif %>
+      <%= f.text_field :nif, class: 'form-control'  %>
+
+      <%= f.label :atividade_profissional %>
+      <%# options = options_from_collection_for_select(@company.professional_activity, 'id', 'name') %>
+      <%#= f.select :atividade_profissional, options, class: 'form-control'  %>
+      <%= f.select :atividade_profissional, ['Empregado', 'Desempregado'], class: 'form-control' %>
+
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs" %>
+      <%= f.submit "Cancelar", class: "btn btn-primary btn-xs" %>
+    <% end %>
+</div>

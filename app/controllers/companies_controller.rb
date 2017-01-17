@@ -1,29 +1,42 @@
 class CompaniesController < ApplicationController
   def show
+    @company = Company.includes(:user).find(params[:id])
     @user = User.find(params[:id])
-    #@company = Company.find(params[:id])
+  end
+
+  def index
+    @companies = Company.includes(:user).paginate(page: params[:page])
   end
 
   def new
-    @user = User.new
-    @user.build_company
+    @company = Company.new
+    @company.build_user
+
+    @professional_activities = ProfessionalActivity.order(:name)
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      @user.tipo = "E"
-      @user.save
+    @company = Company.new(company_params)
+    @company.user.user_type = "E"
+
+    if @company.save
       flash[:success] = "Bem-vindo à Bolsa de Emprego!"
-      redirect_to @user
+      redirect_to @company
     else
+      @professional_activities = ProfessionalActivity.order(:name)
       render 'new'
     end
   end
 
-  def user_params
-      params.require(:user).permit(:nome, :email, :password,
-                                   :password_confirmation, :morada, :cpostal,
-                                   :localidade, :contacto,  :pagina, :apresentacao, company_attributes: [:nif, :atividade_profissional])
-    end
+  def edit
+    @company = Company.includes(:user).find(params[:id])
+  end
+
+  def company_params
+      params.require(:company).permit(:nif, :professional_activity_id,
+                                                          user_attributes: [:name, :email,
+                                                                                    :password, :password_confirmation,
+                                                                                    :address, :zip_code, :city, :contact,
+                                                                                    :page, :presentation])
+  end
 end

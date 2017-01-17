@@ -79,10 +79,7 @@ p {
 //  text-align: right;
 //}
 
-.container ul li{
-  position:relative;
-  float: left;
-}
+
 
 
 /* sidebar */
@@ -125,9 +122,13 @@ section {
 
 /* forms */
 
+.form-control {
+  width: 50%;
+}
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  /* width: 100%; */
   margin-bottom: 15px;
 }
 

@@ -1,12 +1,12 @@
 # Read about fixturelog_in @users at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 neves:
-  nome: Neves Exemplo
+  name: Neves Exemplo
   email: neves@exemplo.com
   password_digest: <%= User.digest('password') %>
-  morada: Rua de Exemplo
-  cpostal: 1000-000
-  localidade: Exemplo
-  contacto: Exemplo
-  pagina: Exemplo
-  apresentacao: Exemplo
+  address: Rua de Exemplo
+  zip_code: 1000-000
+  city: Exemplo
+  contact: Exemplo
+  page: Exemplo
+  presentation: Exemplo

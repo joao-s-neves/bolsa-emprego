@@ -1,15 +1,17 @@
 class CreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users do |t|
-      t.string :nome
+      t.string :name
       t.string :email
-      t.string :morada
-      t.string :cpostal
-      t.string :localidade
-      t.string :contacto
-      t.string :pagina
-      t.string :apresentacao
-      t.string :tipo
+      t.string :address
+      t.string :zip_code
+      t.string :city
+      t.string :contact
+      t.string :page
+      t.string :presentation
+      t.string :user_type
+      t.references :candidate, foreign_key: true
+      t.references :company, foreign_key: true
 
       t.timestamps
     end

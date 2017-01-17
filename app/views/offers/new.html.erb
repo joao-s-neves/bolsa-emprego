@@ -1,0 +1,35 @@
+<% provide(:title, 'Inserir notícia') %>
+<% provide(:button_text, 'Ok') %>
+<!-- <h1>Registo de candidatos</h1> -->
+<%= simple_form_for(@offer) do |f| %>
+      <%#= render 'shared/error_messages' %>
+
+      <%= f.label :title, "Título" %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :begins, "Validade (de/até)" %>
+      <%= f.date_field :begins, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+      <%= f.date_field :ends, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+
+      <%= f.label :description, "Descrição" %>
+      <%= f.text_area :description, class: 'form-control' %>
+
+      <!--- FALTA IMPLEMENTAR FOTO FILE -->
+      <a href="http://gravatar.com/emails" target="_blank">Foto</a><br>
+
+      <%= f.fields_for :company, @company do |c| %>
+      <%= c.label :name, "Empresa" %>
+      <%= link_to "Wiremaze", '#'%>
+      <% end %>
+
+      <br><%= f.label :contract_type, "Tipo de Contrato" %><br>
+      <%= f.select :contract_type, ['Full-time', 'Part-time'], class: 'form-control' %>
+
+      <br><%= f.label :salary, "Salário" %><br>
+      <%= f.select :salary, ['500-1000', '1000-1500', '1500-2000'], class: 'form-control' %>
+
+      <br>
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs" %>
+      <%= f.submit "Cancelar", class: "btn btn-primary btn-xs" %>
+    <% end %>
+</div>

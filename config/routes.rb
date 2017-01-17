@@ -1,19 +1,29 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  root 'static_pages#home'
 
+  get 'sessions/new'
   get 'candidates/new'
 
   resources :users
+
+
+
+  get  '/candidates/signup',  to: 'candidates#new', as: 'signup_candidate'
+  post  '/candidates/signup',  to: 'candidates#new'
+  get  '/companies/new',  to: 'companies#new'
+  resources :candidates
+
+  get  '/companies/signup',  to: 'companies#new', as: 'signup_companies'
+  post  '/companies/signup',  to: 'companies#new'
   resources :companies
 
   root 'static_pages#home'
-  get 'static_pages/home'
-  get  '/signup_c',  to: 'users#new'
-  get  '/signup_e',  to: 'companies#new'
-  post '/signup_c',  to: 'users#create'
-  post '/signup_e',  to: 'companies#create'
+  get 'offers/new'
   get  '/signup',  to: 'static_pages#signup'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+
+  get 'offers/new'
+  resources :offers
 end

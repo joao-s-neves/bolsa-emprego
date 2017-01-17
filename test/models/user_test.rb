@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
                                   #   d_nascimento: "14-03-1996",
                                   # cartao_cidadao:"11111111", area_profissional: "programador",
                                   # mhab_literarias: "secundario",
-                                  # hab_ds: "lorem ipsum", situacao: "desempregado", experiencia: "lorem ipsum")
+                                  # habilitation_description: "lorem ipsum", situacao: "desempregado", experiencia: "lorem ipsum")
   end
 
   test "should be valid" do

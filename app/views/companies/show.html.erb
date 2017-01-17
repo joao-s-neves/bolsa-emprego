@@ -1,10 +1,10 @@
-<% provide(:title, @company.nome) %>
+<% provide(:title, @company.user.name) %>
 <div class="row">
   <aside class="col-md-2">
     <section class="user_info">
     <h1>
-        <%= @company.nome %><br>
-        <%= gravatar_for @company %>
+        <%= @company.user.name %><br>
+        <%= gravatar_for @company.user %>
       </h1>
       <%#= f.edit "Editar", class: "btn btn-primary" %>
       <%#= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-primary btn-xs" %>
@@ -14,7 +14,7 @@
   <aside class="col-md-10">
   <section class="user_info2">
   <p id="teste2">
-        <%= @company.apresentacao %><br>
+        <%= @company.user.presentation %><br>
   </p>
   <h2 id="subtitulo">Atividade Profissonal</h2>
     <p>
@@ -22,9 +22,9 @@
   </p>
   <h2 id="subtitulo">Morada</h2>
     <p>
-        <%= @company.morada %><br>
+        <%= @company.user.address %><br>
   </p>
-  <p><%= @company.cpostal %> <%= @company.localidade %></p>
+  <p><%= @company.user.zip_code %> <%= @company.user.city %></p>
   </section>
   </aside>
 </div>

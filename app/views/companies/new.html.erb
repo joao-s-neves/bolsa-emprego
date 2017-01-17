@@ -1,56 +1,63 @@
 <% provide(:title, 'Registo de entidades') %>
+<% provide(:button_text, 'Criar a minha conta') %>
 <h1>Registo de entidades</h1>
 
 <div class="row">
   <!-- <div class="col-md-6 col-md-offset-3"> -->
-    <%= simple_form_for(@user, url: signup_e_path) do |f| %>
-      <%#= render 'shared/error_messages' %>
+    <%= simple_form_for(@company) do |f| %>
+      <%= render 'shared/error_messages', model: @company %>
 
+      <!--- JOIN TABLE USER -->
+      <%= f.fields_for :user, @user do |u| %>
+      <%#= render 'shared/new' %>
+      <%= u.label :email %>
+      <%= u.email_field :email, class: 'form-control'  %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control'  %>
       <div class="form-group">
-      <%= f.label :password %> <%= f.password_field :password, class: 'form-control'  %>
+      <%= u.label :password %> <%= u.password_field :password , class: 'form-control'  %>
 
-      <%= f.label :password_confirmation, "Confirme a sua password" %>
-      <%= f.password_field :password_confirmation, class: 'form-control'  %>
+      <%= u.label :password_confirmation, "Confirme a sua password" %>
+      <%= u.password_field :password_confirmation, class: 'form-control'  %>
       </div>
-      <%= f.label :nome %>
-      <%= f.text_field :nome, class: 'form-control'  %>
+
+      <%= u.label :name %>
+      <%= u.text_field :name, class: 'form-control'  %>
 
       <!-- FALTA IMPLEMENTAR FOTO FILE-->
+      <div class="gravatar_edit">
+      <%#= gravatar_for @user %>
+      <a href="http://gravatar.com/emails" target="_blank">Foto</a>
+      </div>
 
-      <%= f.label :morada %>
-      <%= f.text_area :morada, class: 'form-control'  %>
+      <%= u.label :address, "Morada" %>
+      <%= u.text_area :address, class: 'form-control'  %>
 
-      <%= f.label :cpostal %>
-      <%= f.text_field :cpostal, class: 'form-control'  %>
+      <%= u.label :zip_code, "Código Postal" %>
+      <%= u.text_field :zip_code, class: 'form-control'  %>
 
-      <%= f.label :localidade %>
-      <%= f.text_field :localidade, class: 'form-control'  %>
+      <%= u.label :city, "Localidade" %>
+      <%= u.text_field :city, class: 'form-control'  %>
 
-      <%= f.label :contacto %>
-      <%= f.text_field :contacto, class: 'form-control'  %>
+      <%= u.label :contact, "Contacto" %>
+      <%= u.text_field :contact, class: 'form-control'  %>
 
-      <%= f.label :pagina %>
-      <%= f.text_field :pagina, class: 'form-control'  %>
+      <%= u.label :page, "Página pessoal" %>
+      <%= u.text_field :page, class: 'form-control'  %>
 
-      <!--- JOIN TABLE COMPANY -->
-
-      <%= f.fields_for :company do |c| %>
-
-      <%= c.label :nif %>
-      <%= c.text_field :nif, class: 'form-control'  %>
-
-      <%= c.label :atividade_profissional %>
-      <%= c.select :atividade_profissional, ['option1', 'option2'], class: 'form-control'  %>
+      <%= u.label :presentation, "Apresentação" %>
+      <%= u.text_area :presentation, class: 'tinymce' %>
+      <%= tinymce %>
       <% end %>
-
       <!-- END -->
 
-      <%= f.label :apresentacao %>
-      <%= f.text_area :apresentacao, class: 'form-control' %>
+      <%= f.label :nif %>
+      <%= f.text_field :nif, class: 'form-control'  %>
 
-      <%= f.submit "Criar a minha conta", class: "btn btn-primary" %>
+      <%= f.label :professional_activity_id, "Actividade Profissional" %>
+      <%= f.collection_select :professional_activity_id, @professional_activities, :id, :name, :prompt => "Seleccione uma actividade profissional" %><br>
+
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs" %>
+      <%= f.submit "Cancelar", class: "btn btn-primary btn-xs" %>
     <% end %>
 </div>

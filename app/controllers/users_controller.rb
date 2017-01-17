@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:candidate, :company).all.find(params[:id])
+    #@user = User.includes(:candidate).all
+    #@user = User.includes(:company).all
     #@candidate = Candidate.find(params[:id])
   end
 
@@ -22,11 +24,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.includes(:candidate, :company).all.find(params[:id])
+    if @user.update_attributes(user_params)
+      #EM FALTA
+    else
+      render 'edit'
+    end
+  end
+
+  private
 
   def user_params
-      params.require(:user).permit(:nome, :email, :password,
-                                   :password_confirmation, :morada, :cpostal,
-                                   :localidade, :contacto,  :pagina, :apresentacao, candidate_attributes: [:d_nascimento, :cartao_cidadao, :area_profissional,
-                                                                                                                                                    :hab_literarias, :hab_ds, :situacao, :experiencia, :user_id])
+      params.require(:user).permit(:name, :email, :password,
+                                   :password_confirmation, :address, :zip_code,
+                                   :city, :contact,  :page, :presentation, candidate_attributes: [:d_nascimento, :cartao_cidadao, :area_profissional,
+                                                                                                                                                    :hab_literarias, :habilitation_description, :situacao, :experiencia, :user_id])
     end
+
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
 end
+end
+

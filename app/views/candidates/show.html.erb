@@ -1,0 +1,58 @@
+<% provide(:title, @candidate.user.name) %>
+<h1>work in progress</h1>
+
+<%# if user_signed_in? %>
+  <%#= render 'form' %>
+<%# end %>
+<!-- --> <div class="row">
+  <aside class="col-md-2">
+    <section class="user_info">
+    <h1>
+        <%= @candidate.user.name %><br>
+        <%#= gravatar_for @candidate.user %>
+        <%= image_tag @candidate.user.picture.thumb %>
+      </h1>
+    </section>
+    <%= link_to "Editar", '', class: "btn btn-primary btn-xs" %>
+  </aside>
+  <aside class="col-md-10">
+  <section class="user_info2">
+  <p id="teste2">
+        <%= @candidate.user.presentation %><br>
+  </p>
+  <h2 id="subtitulo">Atividade Profissonal</h2>
+    <p>
+        <%= @candidate.professional_area.name %><br>
+  </p>
+<br>
+  <br><h1> Dados Profissionais </h1>
+    <h2 id="subtitulo"> Situação Profissonal</h2>
+    <p>
+        <%= @candidate.professional_situation.name %><br>
+  </p>
+
+  <h2 id="subtitulo">Nível Hablitações</h2>
+    <p>
+        <%#= @candidate.habilitation.name %><br>
+  </p>
+
+  <h2 id="subtitulo">Hablitações Literárias</h2>
+    <p>
+        <%= @candidate.habilitation_description %><br>
+  </p>
+
+  <h2 id="subtitulo">Experiência Profissional</h2>
+    <p>
+        <%= @candidate.experience %><br>
+  </p>
+<br>
+  <h1>Dados Pessoais</h1>
+  <h2 id="subtitulo">Morada</h2>
+    <p>
+        <%= @candidate.user.address %><br>
+  </p>
+  <p><%= @candidate.user.zip_code %> <%= @candidate.user.city %></p>
+  </section>
+  </aside>
+</div>
+<!-- -->

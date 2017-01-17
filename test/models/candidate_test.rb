@@ -7,7 +7,7 @@ class CandidateTest < ActiveSupport::TestCase
   def setup
     @candidate = Candidate.new(d_nascimento: "14-03-1996", cartao_cidadao:"11111111",
                                    area_profissional: "programador", hab_literarias: "secundario",
-                                   hab_ds: "lorem ipsum", situacao: "desempregado", experiencia: "lorem ipsum")
+                                   habilitation_description: "lorem ipsum", situacao: "desempregado", experiencia: "lorem ipsum")
   end
 
   test "birth date should be present" do
@@ -31,7 +31,7 @@ class CandidateTest < ActiveSupport::TestCase
   end
 
   test "qualification level description should be present" do
-    @candidate.hab_ds = "     "
+    @candidate.habilitation_description = "     "
     assert_not @candidate.valid?
   end
 

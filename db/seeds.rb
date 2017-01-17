@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+ProfessionalArea.create([{ name: 'Zoologia'}, { name: 'Informática'}, { name: 'Telecomunicações'}])
+Habilitation.create([{name: 'Secundário'}, {name: "Licenciatura"}, {name: "Mestrado"}])
+ProfessionalSituation.create([{ name: 'Empregado'}, { name: 'Desempregado'}])
+ProfessionalActivity.create([{ name: 'Zoologia'}, { name: 'Informática'}, { name: 'Telecomunicações'}])
