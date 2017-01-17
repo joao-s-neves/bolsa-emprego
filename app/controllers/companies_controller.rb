@@ -8,6 +8,12 @@ class CompaniesController < ApplicationController
     @companies = Company.includes(:user).paginate(page: params[:page])
   end
 
+  def home
+    @companies = Company.includes(:user).paginate(page: params[:page])
+    @candidates = Candidate.all
+    @offers = Offer.all
+  end
+
   def new
     @company = Company.new
     @company.build_user

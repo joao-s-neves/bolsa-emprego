@@ -11,11 +11,12 @@ Rails.application.routes.draw do
 
   get  '/candidates/signup',  to: 'candidates#new', as: 'signup_candidate'
   post  '/candidates/signup',  to: 'candidates#new'
-  get  '/companies/new',  to: 'companies#new'
+  get  '/candidates/home',  to: 'candidates#home'
   resources :candidates
 
   get  '/companies/signup',  to: 'companies#new', as: 'signup_companies'
   post  '/companies/signup',  to: 'companies#new'
+  get  '/companies/home',  to: 'companies#home'
   resources :companies
 
   root 'static_pages#home'

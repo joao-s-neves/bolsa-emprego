@@ -1,0 +1,37 @@
+<% provide(:title, 'Bolsa de Emprego') %>
+<h2>Ofertas</h2>
+
+<ul class="offers">
+  <% @offers.each do |offer| %>
+    <li>
+      <%#= image_tag candidate.user.picture, size: 50 %>
+      <%#= gravatar_for user, size: 50 %>
+      <%= link_to offer.tittle, offer %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Histórico</h2>
+
+<ul class="offers_history">
+  <% @offers.each do |offer| %>
+    <li>
+      <%#= image_tag candidate.user.picture, size: 50 %>
+      <%#= gravatar_for user, size: 50 %>
+      <%= link_to offer.tittle, offer %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Candidatos interessados</h2>
+
+<ul class="candidates">
+  <% @candidates.each do |candidate| %>
+    <li>
+      <%#= image_tag candidate.user.picture, size: 50 %>
+      <%#= gravatar_for user, size: 50 %>
+      <%= link_to candidate.user.name, candidate %>
+    </li>
+  <% end %>
+</ul>
+
