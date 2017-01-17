@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117153436) do
+ActiveRecord::Schema.define(version: 20170117170859) do
 
   create_table "candidates", force: :cascade do |t|
     t.datetime "birth_date"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20170117153436) do
     t.string   "activation_digest"
     t.boolean  "activated"
     t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
     t.index ["candidate_id"], name: "index_users_on_candidate_id"
     t.index ["company_id"], name: "index_users_on_company_id"
   end
