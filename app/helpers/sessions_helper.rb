@@ -27,12 +27,20 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
     end
   end
+
+  # def role_current_user
+  #   if (current_user.user_type == 1)
+  #     current_user = @current_candidate
+  #   elsif (current_user.user_type.company?)
+  #     current_user = @current_company
+  #   end
+  # end
 
   def logged_in?
     !current_user.nil?

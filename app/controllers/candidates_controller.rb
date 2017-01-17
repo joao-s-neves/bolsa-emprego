@@ -5,7 +5,7 @@ class CandidatesController < ApplicationController
   end
 
   def index
-    @candidate = Candidate.includes(:user).paginate(page: params[:page])
+    @candidates = Candidate.includes(:user).paginate(page: params[:page])
   end
 
   def new
@@ -19,17 +19,26 @@ class CandidatesController < ApplicationController
 
   def create
     @candidate = Candidate.new(candidate_params)
-    @candidate.user.user_type = "C"
+    #@candidate.user.user_type = "C"
+    @candidate.user.user_type = 1
 
     if @candidate.save
-      flash[:success] = "Bem-vindo à Bolsa de Emprego!"
-      redirect_to @candidate
+      @candidate.user.send_activation_email
+       flash[:info] = "Verifique o seu e-mail para ativar a sua conta."
+      redirect_to root_url
     else
       @professional_areas = ProfessionalArea.order(:name)
       @habilitations = Habilitation.order(:name)
       @professional_situations = ProfessionalSituation.order(:name)
       render 'new'
     end
+  end
+
+  def edit
+    @candidate = Candidate.includes(:user).find(params[:id])
+    @professional_areas = ProfessionalArea.order(:name)
+    @habilitations = Habilitation.order(:name)
+    @professional_situations = ProfessionalSituation.order(:name)
   end
 
   def candidate_params

@@ -4,7 +4,7 @@
     <section class="user_info">
     <h1>
         <%= @company.user.name %><br>
-        <%= gravatar_for @company.user %>
+        <%= image_tag @company.user.picture, size:100 %>
       </h1>
       <%#= f.edit "Editar", class: "btn btn-primary" %>
       <%#= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-primary btn-xs" %>

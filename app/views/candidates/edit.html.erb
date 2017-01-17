@@ -1,5 +1,5 @@
 <% provide(:title, 'Registo de Candidatos') %>
-<% provide(:button_text, 'Criar a minha conta') %>
+<% provide(:button_text, 'Ok') %>
 <h1>Registo de candidatos</h1>
 <%= simple_form_for(@candidate, html: { multipart: true }) do |f| %>
       <%= render 'shared/error_messages',  model: @candidate %>
@@ -25,11 +25,6 @@
       <!-- FALTA IMPLEMENTAR FOTO FILE-->
       <%= u.label :picture, "Foto" %>
       <%= u.file_field :picture %>
-      <!-- <div class="gravatar_edit">
-      <%#= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target="_blank">Foto</a>
-
-      </div> -->
 
       <%= u.label :address, "Morada" %>
       <%= u.text_area :address, class: 'form-control'  %>
@@ -60,8 +55,7 @@
       <%= f.text_field :document, class: 'form-control' %>
 
       <!--- FALTA IMPLEMENTAR CV FILE -->
-      <%= f.label :curriculum, "Curriculum Vitae" %>
-      <%= f.file_field :curriculum %>
+      <a href="http://gravatar.com/emails" target="_blank">Curriculum Vitae</a><br>
 
       <%= f.label :professional_area_id, "Área Profissional" %><br>
       <%= f.collection_select :professional_area_id, @professional_areas, :id, :name, :prompt => "Seleccione uma área profissional" %><br>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117123135) do
+ActiveRecord::Schema.define(version: 20170117153436) do
 
   create_table "candidates", force: :cascade do |t|
     t.datetime "birth_date"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170117123135) do
     t.integer  "professional_situation_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "curriculum"
     t.index ["habilitations_id"], name: "index_candidates_on_habilitations_id"
     t.index ["professional_area_id"], name: "index_candidates_on_professional_area_id"
     t.index ["professional_situation_id"], name: "index_candidates_on_professional_situation_id"
@@ -81,14 +82,17 @@ ActiveRecord::Schema.define(version: 20170117123135) do
     t.string   "contact"
     t.string   "page"
     t.string   "presentation"
-    t.string   "user_type"
+    t.integer  "user_type"
     t.integer  "candidate_id"
     t.integer  "company_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.string   "picture"
+    t.string   "activation_digest"
+    t.boolean  "activated"
+    t.datetime "activated_at"
     t.index ["candidate_id"], name: "index_users_on_candidate_id"
     t.index ["company_id"], name: "index_users_on_company_id"
   end

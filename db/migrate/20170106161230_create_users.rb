@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :contact
       t.string :page
       t.string :presentation
-      t.string :user_type
+      t.integer :user_type
       t.references :candidate, foreign_key: true
       t.references :company, foreign_key: true
 

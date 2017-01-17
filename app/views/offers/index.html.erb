@@ -1,0 +1,14 @@
+<% provide(:title, 'Ofertas') %>
+<h1>Ofertas de Emprego</h1>
+
+<ul class="offers">
+  <% @offers.each do |offer| %>
+    <li>
+      <%#= image_tag candidate.user.picture, size: 50 %>
+      <%#= gravatar_for user, size: 50 %>
+      <%= link_to offer.tittle, offer %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

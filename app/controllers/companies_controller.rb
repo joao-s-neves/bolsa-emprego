@@ -17,11 +17,13 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    @company.user.user_type = "E"
+    #@company.user.user_type = "E"
+    @company.user.user_type = "2"
 
     if @company.save
-      flash[:success] = "Bem-vindo à Bolsa de Emprego!"
-      redirect_to @company
+      @company.user.send_activation_email
+       flash[:info] = "Verifique o seu e-mail para ativar a sua conta."
+      redirect_to root_url
     else
       @professional_activities = ProfessionalActivity.order(:name)
       render 'new'
@@ -30,6 +32,7 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = Company.includes(:user).find(params[:id])
+    @professional_activities = ProfessionalActivity.order(:name)
   end
 
   def company_params

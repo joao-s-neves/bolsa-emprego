@@ -10,3 +10,6 @@ ProfessionalArea.create([{ name: 'Zoologia'}, { name: 'Informática'}, { name: '
 Habilitation.create([{name: 'Secundário'}, {name: "Licenciatura"}, {name: "Mestrado"}])
 ProfessionalSituation.create([{ name: 'Empregado'}, { name: 'Desempregado'}])
 ProfessionalActivity.create([{ name: 'Zoologia'}, { name: 'Informática'}, { name: 'Telecomunicações'}])
+
+
+

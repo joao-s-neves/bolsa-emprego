@@ -10,10 +10,10 @@
     <h1>
         <%= @candidate.user.name %><br>
         <%#= gravatar_for @candidate.user %>
-        <%= image_tag @candidate.user.picture.thumb %>
+        <%= image_tag @candidate.user.picture, size:100 %>
       </h1>
     </section>
-    <%= link_to "Editar", '', class: "btn btn-primary btn-xs" %>
+    <%= link_to "Editar", "", class: "btn btn-primary btn-xs" %>
   </aside>
   <aside class="col-md-10">
   <section class="user_info2">

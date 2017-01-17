@@ -1,0 +1,5 @@
+Olá <%= @user.name %>,
+
+Bem-vindo à Bolsa de Emprego! Clique no link em baixo para activar a sua conta:
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

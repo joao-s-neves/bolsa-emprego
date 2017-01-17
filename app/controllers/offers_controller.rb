@@ -4,7 +4,7 @@ class OffersController < ApplicationController
   end
 
   def index
-    @offer = Offer.paginate(page: params[:page])
+    @offers = Offer.paginate(page: params[:page])
   end
 
   def create
