@@ -7,8 +7,8 @@
         <%= image_tag @candidate.user.picture, size:100 %>
       </h1>
     </section>
-    <% if logged_in? && current_user.company %>
-    <%= render 'users/follow_form', model: @candidate %><%#= link_to "Interessado/a", "", class: "btn btn-primary btn-xs" %><br>
+    <% if logged_in? && current_user.company? %>
+    <%= render 'users/follow_form', model: @candidate %><br>
     <% end %>
     <% if logged_in? && current_user.candidate_id == @candidate.id %>
     <%= link_to "Editar", edit_candidate_path(current_user.candidate_id), class: "btn btn-primary btn-xs" %>
@@ -54,4 +54,3 @@
   </section>
   </aside>
 </div>
-<!-- -->

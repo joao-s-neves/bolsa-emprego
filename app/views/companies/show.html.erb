@@ -6,11 +6,9 @@
         <%= @company.user.name %><br>
         <%= image_tag @company.user.picture, size:100 %>
       </h1>
-      <%#= f.edit "Editar", class: "btn btn-primary" %>
-      <%#= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-primary btn-xs" %>
     </section>
     <% if logged_in? && current_user.candidate? %>
-    <%= render 'users/follow_form', model: @company %><%#= link_to "Interessado/a", "", class: "btn btn-primary btn-xs" %><br>
+    <%= render 'users/follow_form', model: @company %><br>
     <% end %>
     <% if logged_in? && current_user.company_id == @company.id %>
     <%= link_to "Editar", edit_company_path(current_user.company_id), class: "btn btn-primary btn-xs" %>
