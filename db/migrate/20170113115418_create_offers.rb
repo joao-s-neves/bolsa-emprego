@@ -7,7 +7,9 @@ class CreateOffers < ActiveRecord::Migration[5.0]
       t.datetime :ends
       t.string :contract_type
       t.string :salary
+      t.boolean :active
       t.references :company, foreign_key: true
+      t.references :professional_activity, foreign_key: true
 
       t.timestamps
     end

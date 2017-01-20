@@ -1,0 +1,44 @@
+<% provide(:title, 'Notícias') %>
+<% if logged_in? && current_user.backoffice? %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Notícia</th>
+    <th>Data</th>
+    <th>Destaque</th>
+    <th>Activa</th>
+    <th>Acções</th>
+    <%# @articles.values.each do |article| %>
+      <!-- <th><%#= article.name.titleize %></th> -->
+    <%# end %>
+  </tr>
+
+  <% @articles.each do |article| %>
+      <tr>
+      <td><%= article.title %></td>
+      <td><%= article.date %></td>
+      <td></td>
+      <td></td>
+      <td>
+      <%= link_to "Detalhe", article, class: "btn btn-primary btn-xs" %>
+      <%= link_to "Editar", edit_article_path(article.id), class: "btn btn-primary btn-xs" %>
+        <%= link_to "Apagar", '', class: "btn btn-primary btn-xs" %>
+      </td>
+      </tr>
+    <% end %>
+</table>
+
+<% else %>
+
+<ul class="articles">
+  <% @articles.each do |article| %>
+    <li>
+      <%= image_tag article.picture, size: 50 %>
+      <%= link_to article.title, article %>
+      <% article.summary %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
+<% end %>

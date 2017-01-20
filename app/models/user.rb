@@ -1,7 +1,15 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token, :reset_token
-  belongs_to :company, required: false
-  belongs_to :candidate, required: false
+  attr_accessor :remember_token, :activation_token, :reset_token, :validate_email, :validate_password, :current_password
+  belongs_to :company, required: false, dependent: :destroy
+  belongs_to :candidate, required: false, dependent: :destroy
+  has_many :active_relationships,  class_name:  "Relationship",
+                                   foreign_key: "follower_id",
+                                   dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
+  has_many :following, through: :active_relationships,  source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -14,10 +22,10 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                               format: { with: VALID_EMAIL_REGEX },
-                              uniqueness: { case_sensitive: false }
+                              uniqueness: { case_sensitive: false }, if: :validate_email?
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true, :on => :update, :unless => lambda{ |user| user.password.blank? }
+  validates :password, presence: true, length: { minimum: 6 }, if: :validate_password?
+  validates :password_confirmation, presence: true, if: :validate_password? #:on => :update, :unless => lambda{ |user| user.password.blank? }
   validates :address, presence: true
   validates :zip_code, presence: true
   validates :city, presence: true
@@ -25,6 +33,7 @@ class User < ApplicationRecord
   validates :page, presence: true
   validates :presentation, presence: true
   #validates :type, presence: true
+  #validate :current_password_is_correct, on: :update
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -73,6 +82,45 @@ class User < ApplicationRecord
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
   end
+
+  def validate_email?
+    validate_email
+  end
+
+def validate_password?
+  validate_password
+end
+
+# # Check if the inputted current password is correct when the user tries to update his/her password
+#   def current_password_is_correct
+#     # Check if the user tried changing his/her password
+#     if !password.blank?
+#       # Get a reference to the user since the "authenticate" method always returns false when calling on itself (for some reason)
+#       user = User.find_by_id(id)
+
+#       # Check if the user CANNOT be authenticated with the entered current password
+#       if (user.authenticate(current_password) == false)
+#         # Add an error stating that the current password is incorrect
+#         errors.add(:current_password, "is incorrect.")
+#       end
+#     end
+#   end
+# end
+  # Follows a user.
+  def follow(other_user)
+    following << other_user
+  end
+
+  # Unfollows a user.
+  def unfollow(other_user)
+    following.delete(other_user)
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
 
   private
 

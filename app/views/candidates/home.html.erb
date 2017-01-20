@@ -13,12 +13,12 @@
 
 <h2>Empresas Interessadas em mim</h2>
 
-<ul class="offers">
-  <% @offers.each do |offer| %>
+<ul class="companies">
+  <% @companies.each do |company| %>
     <li>
       <%#= image_tag candidate.user.picture, size: 50 %>
       <%#= gravatar_for user, size: 50 %>
-      <%= link_to offer.tittle, offer %>
+      <%= link_to company.name, company %>
     </li>
   <% end %>
 </ul>

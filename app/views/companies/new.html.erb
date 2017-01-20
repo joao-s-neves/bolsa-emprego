@@ -24,10 +24,8 @@
       <%= u.text_field :name, class: 'form-control'  %>
 
       <!-- FALTA IMPLEMENTAR FOTO FILE-->
-      <div class="gravatar_edit">
-      <%#= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target="_blank">Foto</a>
-      </div>
+      <%= u.label :picture, "Foto" %>
+      <%= u.file_field :picture %>
 
       <%= u.label :address, "Morada" %>
       <%= u.text_area :address, class: 'form-control'  %>

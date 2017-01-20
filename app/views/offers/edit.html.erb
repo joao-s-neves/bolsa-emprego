@@ -1,4 +1,4 @@
-<% provide(:title, 'Inserir notícia') %>
+<% provide(:title, 'Editar notícia') %>
 <% provide(:button_text, 'Ok') %>
 <!-- <h1>Registo de candidatos</h1> -->
 <%= simple_form_for(@offer) do |f| %>
@@ -29,9 +29,6 @@
 
       <br><%= f.label :salary, "Salário" %><br>
       <%= f.select :salary, ['500-1000', '1000-1500', '1500-2000'], class: 'form-control' %>
-
-      <br><%= f.label :active, "Activo" %><br>
-      <%= f.check_box :active, class: 'form-control' %>
 
       <br>
       <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs" %>

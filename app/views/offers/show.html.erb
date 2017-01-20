@@ -1,61 +1,55 @@
-<% provide(:title, @offer.tittle) %>
-<h1>work in progress</h1>
-
-<%# if user_signed_in? %>
-  <%#= render 'form' %>
-<%# end %>
-<!-- --> <div class="row">
+<% provide(:title, @offer.title) %>
+<div class="row">
   <aside class="col-md-2">
     <section class="offer_info">
     <h1>
         <%= @offer.title %><br>
-        <%= gravatar_for @candidate.user %>
+        <%#= gravatar_for @candidate.user %>
       </h1>
     </section>
-    <%= link_to "Editar", '', class: "btn btn-primary btn-xs" %>
+    <% if logged_in? && current_user.candidate? %>
+    <%= link_to "Candidatar-me", "", class: "btn btn-primary btn-xs" %><br>
+    <% end %>
+    <% if logged_in? && current_user.company_id == @offer.company_id %>
+    <%= link_to "Editar", edit_offer_path, class: "btn btn-primary btn-xs" %>
+    <% end %>
   </aside>
   <aside class="col-md-10">
   <section class="offer_info2">
   <p id="teste2">
         <%= @offer.description %><br>
   </p>
-  <br><h1> Dados Profissionais </h1>
-  <h2 id="subtitulo">Atividade Profissonal</h2>
+  <p><%= @offer.begins %> a <%= @offer.ends %></p>
+  <h2 id="subtitulo">Empresa</h2>
     <p>
-        <%= @offer.company %><br>
+        <%#= @offer.company.name %><br>
   </p>
-    <h2 id="subtitulo"> Situação Profissonal</h2>
+    <h2 id="subtitulo"> Atividade Prossional</h2>
     <p>
-        <%= @offer.acti %><br>
-  </p>
-
-  <h2 id="subtitulo">Nível Hablitações</h2>
-    <p>
-        <%= @candidate.hab_literarias %><br>
+        <%= @offer.professional_activity.name %><br>
   </p>
 
-  <h2 id="subtitulo">Hablitações Literárias</h2>
+  <h2 id="subtitulo">Tipo de contrato</h2>
     <p>
-        <%= @candidate.habilitation_description %><br>
+        <%= @offer.contract_type %><br>
   </p>
 
-  <h2 id="subtitulo">Experiência Profissional</h2>
+  <h2 id="subtitulo">Salário</h2>
     <p>
-        <%= @candidate.experiencia %><br>
+        <%= @offer.salary %><br>
   </p>
 <br>
-  <h2 id="subtitulo">Atividade Profissonal</h2>
-    <p>
-        <%#= @candidate.company.atividade_profissional %><br>
-  </p>
-<br>
-  <h1>Dados Pessoais</h1>
-  <h2 id="subtitulo">Morada</h2>
-    <p>
-        <%= @candidate.user.morada %><br>
-  </p>
-  <p><%= @candidate.user.cpostal %> <%= @candidate.user.localidade %></p>
+  <h1>Candidatos</h1>
+  <ul class="candidates">
+  <% @candidates.each do |candidate| %>
+    <li>
+      <%= image_tag candidate.user.picture, size: 50 %>
+      <%= link_to candidate.user.name, candidate %><br>
+      <%#= candidate.habilitation.name %>
+      <%= candidate.professional_area.name %>
+    </li>
+  <% end %>
+  </ul>
   </section>
   </aside>
 </div>
-<!-- -->

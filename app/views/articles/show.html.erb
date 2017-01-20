@@ -1,0 +1,68 @@
+<% provide(:title, @article.title) %>
+<% if logged_in? && current_user.backoffice? %>
+
+<div class="row">
+  <aside class="col-md-2">
+    <section class="offer_info">
+    <h1>
+    Detalhe da Notícia
+        <%#= @article.title %><br>
+        <%#= gravatar_for @candidate.user %>
+      </h1>
+    </section>
+  </aside>
+  <aside class="col-md-10">
+  <section class="offer_info2">
+
+  <h2 id="subtitulo">Título</h2>
+  <p id="teste2">
+        <%= @article.title %><br>
+  </p>
+  <h2 id="subtitulo">Data</h2>
+  <p><%= @article.date %></p>
+
+  <h2 id="subtitulo">Sumário</h2>
+    <p>
+        <%= @article.summary %><br>
+  </p>
+
+  <h2 id="subtitulo">Texto</h2>
+    <p>
+        <%= @article.text %><br>
+  </p>
+
+  <h2 id="subtitulo">Destaque</h2>
+    <p>
+        <%#= @article.text %><br>
+  </p>
+
+  <h2 id="subtitulo">Activo</h2>
+    <p>
+        <%#= @article.text %><br>
+  </p>
+  </section>
+  </aside>
+</div>
+
+<% else %>
+
+<div class="row">
+  <aside class="col-md-2">
+    <section class="offer_info">
+    <h1>
+        <%= @article.title %><br>
+        <%#= gravatar_for @candidate.user %>
+      </h1>
+    </section>
+  </aside>
+  <aside class="col-md-10">
+  <section class="offer_info2">
+  <p><%= @article.date %></p>
+    <p>
+        <%= @article.text %><br>
+  </p>
+  </section>
+  </aside>
+</div>
+
+<% end %>

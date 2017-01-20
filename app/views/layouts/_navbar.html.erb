@@ -1,11 +1,17 @@
 <div class ="container">
       <nav>
         <ul class="nav navbar-nav" id="navegar">
+        <% if logged_in? && current_user.backoffice? %>
+        <% end %>
             <li class="active"><a href="#">Home</a></li>
+            <% if logged_in? && current_user.backoffice? %>
+            <li><%=link_to"Utilizadores", users_path %></li>
+            <% else %>
             <li><%=link_to"Entidades", companies_path %></li>
             <li><%=link_to"Candidatos", candidates_path %></li>
             <li><%=link_to"Ofertas", offers_path %></li>
-            <li><%=link_to"Notícias", '#' %></li>
+            <% end %>
+            <li><%=link_to"Notícias", articles_path %></li>
         </ul>
     </nav>
   </div>

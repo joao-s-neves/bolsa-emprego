@@ -1,0 +1,32 @@
+<% provide(:title, 'Inserir Notícia') %>
+<% provide(:button_text, 'Ok') %>
+<!-- <h1>Registo de candidatos</h1> -->
+<%= simple_form_for(@article) do |f| %>
+      <%= render 'shared/error_messages', model: @article %>
+
+      <%= f.label :title, "Título" %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :date, "Data" %>
+      <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+
+      <%= f.label :summary, "Sumário" %>
+      <%= f.text_area :summary, class: 'form-control' %>
+
+      <%= f.label :text, "Texto" %>
+      <%= f.text_area :text, class: 'form-control' %>
+
+      <!--- FALTA IMPLEMENTAR FOTO FILE -->
+      <%= f.label :picture, "Foto" %>
+      <%= f.file_field :picture %>
+
+      <br><%= f.label :active, "Activo" %><br>
+      <%= f.check_box :active, class: 'form-control' %>
+
+      <br><%= f.label :featured, "Destaque" %><br>
+      <%= f.check_box :featured, class: 'form-control' %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs" %>
+      <%= f.submit "Cancelar", class: "btn btn-primary btn-xs" %>
+    <% end %>
+</div>

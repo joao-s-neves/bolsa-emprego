@@ -1,12 +1,25 @@
 <% provide(:title, 'Entidades') %>
 <h1>Entidades</h1>
 
+<%= form_tag(companies_path, method: :get) do %>
+  <%= text_field_tag :search%>
+  <%= submit_tag 'Pesquisar' %>
+<% end %>
+
+
 <ul class="companies">
   <% @companies.each do |company| %>
     <li>
       <%= image_tag company.user.picture, size: 50 %>
       <%#= gravatar_for user, size: 50 %>
-      <%= link_to company.user.name, company %>
+      <%= link_to company.user.name, company %><br>
+      <%=  company.user.presentation %><br>
+      <% if logged_in? && current_user.candidate? %>
+        <%#= render 'shared/follow_form' %><br>
+      <% end %>
+      <% if (logged_in? && current_user.company_id == company.id) || (logged_in? && current_user.backoffice?) %>
+        <%= link_to "Editar", edit_company_path(company.id), class: "btn btn-primary btn-xs" %>
+      <% end %>
     </li>
   <% end %>
 </ul>

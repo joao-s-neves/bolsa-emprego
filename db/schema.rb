@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117170859) do
+ActiveRecord::Schema.define(version: 20170119122340) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "date"
+    t.string   "summary"
+    t.string   "text"
+    t.string   "picture"
+    t.boolean  "active"
+    t.boolean  "featured"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "candidates", force: :cascade do |t|
     t.datetime "birth_date"
@@ -49,10 +61,14 @@ ActiveRecord::Schema.define(version: 20170117170859) do
     t.datetime "ends"
     t.string   "contract_type"
     t.string   "salary"
+    t.boolean  "active"
     t.integer  "company_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "professional_activity_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "picture"
     t.index ["company_id"], name: "index_offers_on_company_id"
+    t.index ["professional_activity_id"], name: "index_offers_on_professional_activity_id"
   end
 
   create_table "professional_activities", force: :cascade do |t|
@@ -71,6 +87,16 @@ ActiveRecord::Schema.define(version: 20170117170859) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|

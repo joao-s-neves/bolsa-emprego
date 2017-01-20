@@ -47,11 +47,26 @@ class CandidatesController < ApplicationController
     @professional_situations = ProfessionalSituation.order(:name)
   end
 
+  def update
+    @candidate = Candidate.includes(:user).find(params[:id])
+    @candidate.user.validate_email = false
+    @candidate.user.validate_password = false
+    if @candidate.update_attributes(candidate_params)
+      flash[:success] = "Perfil actualizado"
+      redirect_to @candidate
+    else
+      @professional_areas = ProfessionalArea.order(:name)
+      @habilitations = Habilitation.order(:name)
+      @professional_situations = ProfessionalSituation.order(:name)
+      render 'edit'
+    end
+  end
+
   def candidate_params
       params.require(:candidate).permit(:birth_date, :document, :habilitation_description, :experience, :professional_area_id,
                                                                :habilitations_id, :professional_situation_id,
                                                                user_attributes: [:name, :email, :password, :password_confirmation,
                                                                                     :address, :zip_code, :city, :contact,
-                                                                                    :page, :presentation, :picture])
+                                                                                    :page, :presentation, :picture, :id])
     end
 end

@@ -4,10 +4,15 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'candidates/new'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :relationships,       only: [:create, :destroy]
 
   get  '/candidates/signup',  to: 'candidates#new', as: 'signup_candidate'
   post  '/candidates/signup',  to: 'candidates#new'
@@ -20,7 +25,6 @@ Rails.application.routes.draw do
   resources :companies
 
   root 'static_pages#home'
-  get 'offers/new'
   get  '/signup',  to: 'static_pages#signup'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -28,4 +32,7 @@ Rails.application.routes.draw do
 
   get 'offers/new'
   resources :offers
+
+  get 'articles/new'
+  resources :articles
 end

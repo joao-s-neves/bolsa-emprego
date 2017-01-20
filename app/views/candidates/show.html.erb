@@ -1,19 +1,18 @@
 <% provide(:title, @candidate.user.name) %>
-<h1>work in progress</h1>
-
-<%# if user_signed_in? %>
-  <%#= render 'form' %>
-<%# end %>
-<!-- --> <div class="row">
+<div class="row">
   <aside class="col-md-2">
     <section class="user_info">
     <h1>
         <%= @candidate.user.name %><br>
-        <%#= gravatar_for @candidate.user %>
         <%= image_tag @candidate.user.picture, size:100 %>
       </h1>
     </section>
-    <%= link_to "Editar", "", class: "btn btn-primary btn-xs" %>
+    <% if logged_in? && current_user.company %>
+    <%= render 'users/follow_form', model: @candidate %><%#= link_to "Interessado/a", "", class: "btn btn-primary btn-xs" %><br>
+    <% end %>
+    <% if logged_in? && current_user.candidate_id == @candidate.id %>
+    <%= link_to "Editar", edit_candidate_path(current_user.candidate_id), class: "btn btn-primary btn-xs" %>
+    <% end %>
   </aside>
   <aside class="col-md-10">
   <section class="user_info2">

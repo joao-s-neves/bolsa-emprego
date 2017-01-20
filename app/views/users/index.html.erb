@@ -1,0 +1,23 @@
+<% provide(:title, 'Utilizadores') %>
+<table class="table table-striped">
+  <tr>
+    <th>Nome</th>
+    <th>Tipo</th>
+    <th>Activo</th>
+    <th>Acções</th>
+  </tr>
+
+  <% @users.each do |user| %>
+      <tr>
+      <td><%= user.name %></td>
+      <td><%= user.user_type %></td>
+      <td><%= user.activated %></td>
+      <td>
+      <%= link_to "Detalhe", user, class: "btn btn-primary btn-xs" %>
+      <%= link_to "Editar", edit_user_path(user.id), class: "btn btn-primary btn-xs" %>
+      <%= link_to "Apagar", user , method: :delete,
+                                  data: { confirm: "Tem a certeza?" }, class: "btn btn-primary btn-xs" %>
+      </td>
+      </tr>
+    <% end %>
+</table>

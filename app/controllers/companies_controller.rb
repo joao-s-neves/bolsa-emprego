@@ -6,6 +6,11 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.includes(:user).paginate(page: params[:page])
+    # @companies = if params[:search]
+    #   Company.includes(:user).where('user.name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+    # else
+    #   Company.includes(:user).paginate(page: params[:page])
+    # end
   end
 
   def home
@@ -24,7 +29,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     #@company.user.user_type = "E"
-    @company.user.user_type = "2"
+    @company.user.user_type = 2
 
     if @company.save
       @company.user.send_activation_email
@@ -41,11 +46,26 @@ class CompaniesController < ApplicationController
     @professional_activities = ProfessionalActivity.order(:name)
   end
 
+  def update
+    @company = Company.includes(:user).find(params[:id])
+    @company.user.validate_email = false
+    @company.user.validate_password = false
+    if @company.update_attributes(company_params)
+      flash[:success] = "Perfil actualizado"
+      redirect_to @company
+    else
+     @professional_activities = ProfessionalActivity.order(:name)
+      render 'edit'
+    end
+  end
+
   def company_params
       params.require(:company).permit(:nif, :professional_activity_id,
                                                           user_attributes: [:name, :email,
                                                                                     :password, :password_confirmation,
                                                                                     :address, :zip_code, :city, :contact,
-                                                                                    :page, :presentation])
+                                                                                    :page, :presentation, :picture, :id])
+
+
   end
 end

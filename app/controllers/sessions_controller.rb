@@ -3,17 +3,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:session][:email].downcase)
-    @candidate = Candidate.find_by_id(@user.candidate_id)
-    @company = Company.find_by_id(@user.company_id)
-    if @user && @user.authenticate(params[:session][:password])
-      if @user.activated?
-        log_in @user
-        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-        if @user.user_type == '1'
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
+      if user.activated?
+        log_in user
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        candidate = Candidate.find_by_id(user.candidate_id)
+        company = Company.find_by_id(user.company_id)
+        if user.candidate?
           redirect_back_or candidate
-        elsif @user.user_type == '2'
+        elsif user.company?
           redirect_back_or company
+        elsif user.backoffice?
+          redirect_back_or root_path
         end
       else
         message  = "Conta por activar. "

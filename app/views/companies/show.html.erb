@@ -9,7 +9,12 @@
       <%#= f.edit "Editar", class: "btn btn-primary" %>
       <%#= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-primary btn-xs" %>
     </section>
-    <%= link_to "Editar", '#', class: "btn btn-primary btn-xs" %>
+    <% if logged_in? && current_user.candidate? %>
+    <%= render 'users/follow_form', model: @company %><%#= link_to "Interessado/a", "", class: "btn btn-primary btn-xs" %><br>
+    <% end %>
+    <% if logged_in? && current_user.company_id == @company.id %>
+    <%= link_to "Editar", edit_company_path(current_user.company_id), class: "btn btn-primary btn-xs" %>
+    <% end %>
   </aside>
   <aside class="col-md-10">
   <section class="user_info2">
@@ -18,7 +23,7 @@
   </p>
   <h2 id="subtitulo">Atividade Profissonal</h2>
     <p>
-        <%= @company.atividade_profissional %><br>
+        <%= @company.professional_activity.name %><br>
   </p>
   <h2 id="subtitulo">Morada</h2>
     <p>

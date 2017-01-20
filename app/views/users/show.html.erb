@@ -1,0 +1,32 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-2">
+    <section class="user_info">
+    <h1>Nome</h1>
+    <p>
+        <%= @user.name %><br>
+    </p>
+    </section>
+  </aside>
+  <aside class="col-md-10">
+  <section class="user_info2">
+  <h2 id="subtitulo">E-mail</h2>
+  <p id="teste2">
+        <%= @user.email %><br>
+  </p>
+  <h2 id="subtitulo">Tipo</h2>
+    <p>
+        <%= @user.user_type %><br>
+  </p>
+  <h2 id="subtitulo">Activo</h2>
+    <p>
+        <%= @user.activated %><br>
+  </p>
+  </section>
+  </aside>
+  <%= link_to "Editar", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
+  <%= link_to "Alterar password", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
+  <%= link_to "Apagar", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
+  <%= link_to "Inserir", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
+  <%= link_to "Listagem", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
+</div>

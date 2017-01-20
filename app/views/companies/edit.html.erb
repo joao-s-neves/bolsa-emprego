@@ -1,11 +1,9 @@
 <% provide(:title, 'Registo de entidades') %>
 <% provide(:button_text, 'Ok') %>
 <h1>Editar Entidade</h1>
-
 <div class="row">
-  <!-- <div class="col-md-6 col-md-offset-3"> -->
-    <%= simple_form_for(@company) do |f| %>
-      <%= render 'shared/error_messages' %>
+    <%= simple_form_for(@company,html: { multipart: true }) do |f| %>
+      <%= render 'shared/error_messages', model: @company %>
 
       <!--- JOIN TABLE USER -->
       <%= f.fields_for :user, @user do |u| %>
@@ -13,16 +11,12 @@
       <%= u.label :email %>
       <%= u.email_field :email, class: 'form-control'  %>
 
-
-
       <%= u.label :name %>
       <%= u.text_field :name, class: 'form-control'  %>
 
       <!-- FALTA IMPLEMENTAR FOTO FILE-->
-      <div class="gravatar_edit">
-      <%#= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target="_blank">Foto</a>
-      </div>
+      <%= u.label :picture, "Foto" %>
+      <%= u.file_field :picture %>
 
       <%= u.label :address, "Morada" %>
       <%= u.text_area :address, class: 'form-control'  %>
@@ -40,7 +34,7 @@
       <%= u.text_field :page, class: 'form-control'  %>
 
       <%= u.label :presentation, "Apresentação" %>
-      <%= u.text_area :apresentacao, class: 'tinymce' %>
+      <%= u.text_area :presentation, class: 'tinymce' %>
       <%= tinymce %>
       <% end %>
       <!-- END -->
@@ -48,13 +42,12 @@
       <%= f.label :nif %>
       <%= f.text_field :nif, class: 'form-control'  %>
 
-      <%= f.label :atividade_profissional %>
-      <%# options = options_from_collection_for_select(@company.professional_activity, 'id', 'name') %>
-      <%#= f.select :atividade_profissional, options, class: 'form-control'  %>
-      <%= f.select :atividade_profissional, ['Empregado', 'Desempregado'], class: 'form-control' %>
+      <%= f.label :professional_activity_id, "Actividade Profissional" %>
+      <%= f.collection_select :professional_activity_id, @professional_activities, :id, :name, :prompt => "Seleccione uma actividade profissional" %><br>
 
 
       <%= f.submit yield(:button_text), class: "btn btn-primary btn-xs" %>
       <%= f.submit "Cancelar", class: "btn btn-primary btn-xs" %>
     <% end %>
 </div>
+
