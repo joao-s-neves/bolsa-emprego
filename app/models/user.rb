@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token, :reset_token, :validate_email, :validate_password, :current_password
+  attr_accessor :remember_token, :activation_token, :reset_token,
+                         :validate_email, :validate_password, :current_password,
+                         :validate_address, :validate_zip_code, :validate_city,
+                         :validate_contact, :validate_page, :validate_presentation
   belongs_to :company, required: false, dependent: :destroy
   belongs_to :candidate, required: false, dependent: :destroy
   has_many :active_relationships,  class_name:  "Relationship",
@@ -11,8 +14,9 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  before_save   :downcase_email
+
   before_create :create_activation_digest
+  before_save   :downcase_email
   enum user_type: { candidate: 1, company: 2, backoffice: 3 }
 
   mount_uploader :picture, PictureUploader
@@ -25,13 +29,13 @@ class User < ApplicationRecord
                               uniqueness: { case_sensitive: false }, if: :validate_email?
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, if: :validate_password?
-  validates :password_confirmation, presence: true, if: :validate_password? #:on => :update, :unless => lambda{ |user| user.password.blank? }
-  validates :address, presence: true
-  validates :zip_code, presence: true
-  validates :city, presence: true
-  validates :contact, presence: true
-  validates :page, presence: true
-  validates :presentation, presence: true
+  validates :password_confirmation, presence: true, if: :validate_password?
+  validates :address, presence: true, if: :validate_address?
+  validates :zip_code, presence: true, if: :validate_zip_code?
+  validates :city, presence: true, if: :validate_city?
+  validates :contact, presence: true, if: :validate_contact?
+  validates :page, presence: true, if: :validate_page?
+  validates :presentation, presence: true, if: :validate_presentation?
   #validates :type, presence: true
   #validate :current_password_is_correct, on: :update
 
@@ -83,6 +87,30 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
+  def validate_address?
+    validate_address
+  end
+
+  def validate_zip_code?
+    validate_zip_code
+  end
+
+  def validate_city?
+    validate_city
+  end
+
+  def validate_contact?
+    validate_contact
+  end
+
+  def validate_page?
+    validate_page
+  end
+
+  def validate_presentation?
+    validate_presentation
+  end
+
   def validate_email?
     validate_email
   end
@@ -91,21 +119,6 @@ def validate_password?
   validate_password
 end
 
-# # Check if the inputted current password is correct when the user tries to update his/her password
-#   def current_password_is_correct
-#     # Check if the user tried changing his/her password
-#     if !password.blank?
-#       # Get a reference to the user since the "authenticate" method always returns false when calling on itself (for some reason)
-#       user = User.find_by_id(id)
-
-#       # Check if the user CANNOT be authenticated with the entered current password
-#       if (user.authenticate(current_password) == false)
-#         # Add an error stating that the current password is incorrect
-#         errors.add(:current_password, "is incorrect.")
-#       end
-#     end
-#   end
-# end
   # Follows a user.
   def follow(other_user)
     following << other_user

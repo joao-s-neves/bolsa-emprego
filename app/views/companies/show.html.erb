@@ -1,6 +1,6 @@
 <% provide(:title, @company.user.name) %>
 <div class="row">
-  <aside class="col-md-2">
+  <aside class="col-md-3">
     <section class="user_info">
     <h1>
         <%= @company.user.name %><br>
@@ -14,7 +14,7 @@
     <%= link_to "Editar", edit_company_path(current_user.company_id), class: "btn btn-primary btn-xs" %>
     <% end %>
   </aside>
-  <aside class="col-md-10">
+  <aside class="col-md-9">
   <section class="user_info2">
   <p id="teste2">
         <%= @company.user.presentation %><br>

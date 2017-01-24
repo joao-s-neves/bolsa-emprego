@@ -4,13 +4,16 @@
 <ul class="candidates">
   <% @candidates.each do |candidate| %>
     <li>
+
       <%= image_tag candidate.user.picture, size: 50 %>
-      <%#= gravatar_for user, size: 50 %>
-      <%= link_to candidate.user.name, candidate %>
-      <%#= candidate.user.presentation, candidate %>
-      <% if (logged_in? && current_user.candidate_id == candidate.id) || (logged_in? && current_user.backoffice?) %>
+      <p>
+      <%= link_to candidate.user.name, candidate %><br>
+      <%= candidate.professional_area.name %>
+      <%#= candidate.habilitation.name %>
+      <% if (logged_in? && current_user.candidate_id == candidate.id) || (logged_in? && current_user.backoffice ?) %>
         <%= link_to "Editar", edit_candidate_path(candidate.id), class: "btn btn-primary btn-xs" %>
       <% end %>
+      </p>
     </li>
   <% end %>
 </ul>

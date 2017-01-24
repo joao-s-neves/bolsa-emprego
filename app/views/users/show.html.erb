@@ -24,9 +24,10 @@
   </p>
   </section>
   </aside>
-  <%= link_to "Editar", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
+  <%= link_to "Editar", '', class: "btn btn-primary btn-xs" %>
   <%= link_to "Alterar password", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
-  <%= link_to "Apagar", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
-  <%= link_to "Inserir", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
-  <%= link_to "Listagem", edit_password_reset_path, class: "btn btn-primary btn-xs" %>
+  <%= link_to "Apagar", @user , method: :delete,
+                                  data: { confirm: "Tem a certeza?" }, class: "btn btn-primary btn-xs" %>
+  <%= link_to "Inserir", '', class: "btn btn-primary btn-xs" %>
+  <%= link_to "Listagem", '', class: "btn btn-primary btn-xs" %>
 </div>

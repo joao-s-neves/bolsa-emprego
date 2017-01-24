@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
         candidate = Candidate.find_by_id(user.candidate_id)
         company = Company.find_by_id(user.company_id)
         if user.candidate?
-          redirect_back_or candidate
+          redirect_back_or candidates_home_path
         elsif user.company?
-          redirect_back_or company
+          redirect_back_or companies_home_path
         elsif user.backoffice?
           redirect_back_or root_path
         end

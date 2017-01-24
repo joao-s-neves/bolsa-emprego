@@ -1,9 +1,48 @@
-<div class="center jumbotron">
-  <h1>Bem-vindo à Bolsa de Emprego!</h1>
+<div class="row">
+  <aside class="col-md-6">
+  <h2>Últimas Ofertas</h2>
+    <ul class="last_offers">
+      <% @offers.each do |offer| %>
+        <li>
+          <%#= image_tag candidate.user.picture, size: 50 %>
+          <%#= gravatar_for user, size: 50 %>
+          <%= link_to offer.tittle, offer %>
+        </li>
+      <% end %>
+    </ul>
 
-  <h2>
-    Isto é uma homepage teste para o projecto Bolsa de Emprego.
-  </h2>
+    <h2>Últimas Empresas</h2>
 
-  <%= link_to "Registe-se já!", signup_path, class: "btn btn-lg btn-primary" %>
+    <ul class="companies">
+      <% @companies.each do |company| %>
+        <li>
+          <%#= image_tag candidate.user.picture, size: 50 %>
+          <%#= gravatar_for user, size: 50 %>
+          <%#= link_to company.name, company %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+  <aside class="col-md-6">
+  <h2>Notícias</h2>
+  <ul class="last_articles">
+      <% @articles.each do |article| %>
+        <li>
+          <%#= image_tag candidate.user.picture, size: 50 %>
+          <%#= gravatar_for user, size: 50 %>
+          <%= link_to article.tittle, article %>
+        </li>
+      <% end %>
+    </ul>
+    <h2>Últimos Candidatos</h2>
+      <ul class="last_candidates">
+          <% @candidates.each do |candidate| %>
+            <li>
+              <%#= image_tag candidate.user.picture, size: 50 %>
+              <%#= gravatar_for user, size: 50 %>
+              <%#= link_to candidate.name, candidate %>
+            </li>
+          <% end %>
+        </ul>
+  </aside>
 </div>

@@ -47,7 +47,7 @@ h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 20px;
-  text-align: center;
+  /* text-align: center; */
   font-weight: normal;
   color: $gray-light;
 }
@@ -175,4 +175,17 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+/* teste */
+
+ul
+{
+    list-style-type: none;
+}
+
+ul li p
+{
+    display: inline-block;
+    vertical-align: middle;
 }

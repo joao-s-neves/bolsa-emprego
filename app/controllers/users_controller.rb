@@ -11,14 +11,18 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @user.build_candidate
   end
 
   def create
     @user = User.new(user_params)
+    @user.validate_address = false
+    @user.validate_zip_code = false
+    @user.validate_city = false
+    @user.validate_contact = false
+    @user.validate_page = false
+    @user.validate_presentation = false
     @user.user_type = 3
     if @user.save
-      #log_in @user
       flash[:success] = "Utilizador introduzido com sucesso!"
       redirect_to @user
     else
@@ -41,10 +45,24 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
   private
 
   def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :activated)
     end
 
     # Confirms the correct user.

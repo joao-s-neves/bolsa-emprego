@@ -7,11 +7,18 @@ class Company < ApplicationRecord
 
   validates :nif, presence: true
 
-  def self.search(search)
-    if search
-      self.where("name like ?", "%#{search}%")
-    else
-      self.all
-    end
+#scope :activity, -> (location_id) { where location_id: location_id }
+
+def self.search(search)
+  if search
+    #references(:users).
+      #where("users.name LIKE " "%#{search}%")
+
+    #includes(:user).find(:all, :conditions => ['user.name LIKE ?', "%#{search}%"])
+    joins(:user).where('users.name LIKE ?', " %#{search}%")
+  else
+    includes(:user).find(:all)
   end
+end
+
 end
