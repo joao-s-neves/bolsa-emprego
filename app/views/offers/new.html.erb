@@ -19,7 +19,7 @@
       <%= f.file_field :picture %>
 
       <%= f.label :company_id, "Empresa" %>
-      <%= link_to "Wiremaze", '#'%><br>
+      <%= link_to current_user.name, current_user.company %><br>
 
       <%= f.label :professional_activity_id, "Actividade Profissional" %><br>
       <%= f.collection_select :professional_activity_id, @professional_activities, :id, :name, :prompt => "Seleccione uma actividade profissional" %><br>

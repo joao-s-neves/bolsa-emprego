@@ -4,11 +4,10 @@
     <section class="offer_info">
     <h1>
         <%= @offer.title %><br>
-        <%#= gravatar_for @candidate.user %>
       </h1>
     </section>
     <% if logged_in? && current_user.candidate? %>
-    <%= link_to "Candidatar-me", "", class: "btn btn-primary btn-xs" %><br>
+    <%= render 'applications_form' %><br>
     <% end %>
     <% if logged_in? && current_user.company_id == @offer.company_id %>
     <%= link_to "Editar", edit_offer_path, class: "btn btn-primary btn-xs" %>
@@ -20,21 +19,21 @@
         <%= @offer.description %><br>
   </p>
   <p><%= @offer.begins %> a <%= @offer.ends %></p>
-  <h2 id="subtitulo">Empresa</h2>
+  <h1 id="subtitulo">Empresa</h1>
     <p>
-        <%#= @offer.company.name %><br>
+        <%= @offer.company.user.name %><br>
   </p>
-    <h2 id="subtitulo"> Atividade Prossional</h2>
+    <h1 id="subtitulo"> Atividade Prossional</h1>
     <p>
         <%= @offer.professional_activity.name %><br>
   </p>
 
-  <h2 id="subtitulo">Tipo de contrato</h2>
+  <h1 id="subtitulo">Tipo de contrato</h1>
     <p>
         <%= @offer.contract_type %><br>
   </p>
 
-  <h2 id="subtitulo">Salário</h2>
+  <h1 id="subtitulo">Salário</h1>
     <p>
         <%= @offer.salary %><br>
   </p>
@@ -44,10 +43,11 @@
   <% @candidates.each do |candidate| %>
     <li>
       <%= image_tag candidate.user.picture, size: 50 %>
+      <p>
       <%= link_to candidate.user.name, candidate %><br>
       <%#= candidate.habilitation.name %>
       <%= candidate.professional_area.name %>
-    </li>
+      </p></li>
   <% end %>
   </ul>
   </section>

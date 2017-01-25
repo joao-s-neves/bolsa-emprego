@@ -10,9 +10,22 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :candidates do
+    member do
+      get :following
+    end
+  end
+
+  resources :offers do
+    member do
+      get :followers
+    end
+  end
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
+  resources :applications,       only: [:create, :destroy]
 
   get  '/candidates/signup',  to: 'candidates#new', as: 'signup_candidate'
   post  '/candidates/signup',  to: 'candidates#new'

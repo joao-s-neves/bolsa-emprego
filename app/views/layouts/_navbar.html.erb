@@ -3,13 +3,13 @@
             <ul class="nav navbar-nav" id="navegar">
             <% if logged_in? && current_user.candidate? %>
             <li><%=link_to"Home", candidates_home_path %></li>
-            <% end %>
-            <% if logged_in? && current_user.company? %>
+            <% elsif logged_in? && current_user.company? %>
             <li><%=link_to"Home", companies_home_path %></li>
+            <% else %>
+            <li><%=link_to"Home", root_path %></li>
             <% end %>
 
             <% if logged_in? && current_user.backoffice? %>
-            <li><%=link_to"Home", '' %></li>
             <li><%=link_to"Utilizadores", users_path %></li>
             <% else %>
             <li><%=link_to"Entidades", companies_path %></li>

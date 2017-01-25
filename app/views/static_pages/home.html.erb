@@ -1,14 +1,21 @@
+<% if logged_in? && current_user.backoffice? %>
+<% else %>
 <div class="row">
   <aside class="col-md-6">
   <h2>Últimas Ofertas</h2>
     <ul class="last_offers">
       <% @offers.each do |offer| %>
         <li>
-          <%#= image_tag candidate.user.picture, size: 50 %>
-          <%#= gravatar_for user, size: 50 %>
-          <%= link_to offer.tittle, offer %>
+          <%= image_tag offer.picture, size: 50 %>
+          <p>
+          <%= link_to offer.title, offer %><br>
+          <%= offer.begins %><%= offer.ends %><br>
+          <%#= offer.company.name %><br>
+          <%= offer.description %>
+          </p>
         </li>
       <% end %>
+      <%=link_to "Ver todas as ofertas", offers_path %>
     </ul>
 
     <h2>Últimas Empresas</h2>
@@ -16,11 +23,14 @@
     <ul class="companies">
       <% @companies.each do |company| %>
         <li>
-          <%#= image_tag candidate.user.picture, size: 50 %>
-          <%#= gravatar_for user, size: 50 %>
-          <%#= link_to company.name, company %>
+          <%= image_tag company.user.picture, size: 50 %>
+          <p>
+          <%= link_to company.user.name, company %><br>
+          <%= company.user.presentation %>
+          </p>
         </li>
       <% end %>
+      <%=link_to "Ver todas as empresas", companies_path %>
     </ul>
   </aside>
   <aside class="col-md-6">
@@ -28,21 +38,31 @@
   <ul class="last_articles">
       <% @articles.each do |article| %>
         <li>
-          <%#= image_tag candidate.user.picture, size: 50 %>
-          <%#= gravatar_for user, size: 50 %>
-          <%= link_to article.tittle, article %>
+          <%= image_tag article.picture, size: 50 %>
+          <p>
+          <%= link_to article.title, article %>
+          <%= article.date %>
+          <%= article.summary %>
+          </p>
         </li>
       <% end %>
+      <%=link_to "Ver todas as notícias", articles_path %>
     </ul>
     <h2>Últimos Candidatos</h2>
       <ul class="last_candidates">
           <% @candidates.each do |candidate| %>
             <li>
-              <%#= image_tag candidate.user.picture, size: 50 %>
-              <%#= gravatar_for user, size: 50 %>
-              <%#= link_to candidate.name, candidate %>
+              <%= image_tag candidate.user.picture, size: 50 %>
+              <p>
+              <%= link_to candidate.user.name, candidate %>
+              <%= %>
+              <%= %>
+              <%= %>
+              </p>
             </li>
           <% end %>
+          <%=link_to "Ver todos os candidatos", candidates_path %>
         </ul>
   </aside>
 </div>
+<% end %>

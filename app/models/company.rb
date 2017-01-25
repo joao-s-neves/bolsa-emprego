@@ -15,7 +15,7 @@ def self.search(search)
       #where("users.name LIKE " "%#{search}%")
 
     #includes(:user).find(:all, :conditions => ['user.name LIKE ?', "%#{search}%"])
-    joins(:user).where('users.name LIKE ?', " %#{search}%")
+    joins(:user).where('users.name LIKE ?', "%#{search}%")
   else
     includes(:user).find(:all)
   end

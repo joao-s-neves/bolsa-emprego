@@ -1,0 +1,5 @@
+<%= simple_form_for(current_user.candidate.active_applications.build, remote: true) do |f| %>
+  <div><%= hidden_field_tag :followed_id, model.id %><%#= text_field_tag :followed_id, @offer.id %>
+  </div>
+  <%= f.submit "Candidatar-se", class: "btn btn-primary btn-xs" %>
+<% end %>

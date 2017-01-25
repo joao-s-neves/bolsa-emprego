@@ -10,7 +10,7 @@
       <%= link_to candidate.user.name, candidate %><br>
       <%= candidate.professional_area.name %>
       <%#= candidate.habilitation.name %>
-      <% if (logged_in? && current_user.candidate_id == candidate.id) || (logged_in? && current_user.backoffice ?) %>
+      <% if (logged_in? && current_user.candidate_id == candidate.id) || (logged_in? && current_user.backoffice?) %>
         <%= link_to "Editar", edit_candidate_path(candidate.id), class: "btn btn-primary btn-xs" %>
       <% end %>
       </p>

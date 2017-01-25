@@ -5,13 +5,13 @@
   <% @offers.each do |offer| %>
     <li>
       <%= image_tag offer.picture, size: 50 %>
-      <%= link_to offer.tittle, offer %>
+      <%= link_to offer.title, offer %>
       <% if logged_in? && current_user.candidate? %>
-        <%= link_to "Candidatar-me", "", class: "btn btn-primary btn-xs" %><br>
+          <%= render 'applications_form', model: @offer %><br>
       <% end %>
-      <% if logged_in? && current_user.company_id == @offer.company_id %>
-        <%= link_to "Editar", edit_offer_path, class: "btn btn-primary btn-xs" %>
-      <% end %>
+      <%# if logged_in? && current_user.company_id == @offers.company_id %>
+        <%#= link_to "Editar", edit_offer_path, class: "btn btn-primary btn-xs" %>
+      <%# end %>
     </li>
   <% end %>
 </ul>

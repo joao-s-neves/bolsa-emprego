@@ -7,7 +7,6 @@ class OffersController < ApplicationController
 
   def index
     @offers = Offer.paginate(page: params[:page])
-
   end
 
   def new
@@ -17,6 +16,7 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(offer_params)
+    @offer.company_id = current_user.company_id
     if @offer.save
       flash[:success] = "Oferta introduzida com sucesso!"
       redirect_to @offer
@@ -40,6 +40,13 @@ class OffersController < ApplicationController
       @professional_activities = ProfessionalActivity.order(:name)
       render 'edit'
     end
+  end
+
+  def followers
+    @title = "Candidatos interessados"
+    @offer  = Offer.find(params[:id])
+    @offers = @offer.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   def offer_params

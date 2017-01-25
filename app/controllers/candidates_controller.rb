@@ -5,7 +5,12 @@ class CandidatesController < ApplicationController
   end
 
   def index
-    @candidates = Candidate.includes(:user).paginate(page: params[:page])
+    @candidates = if params[:search]
+      Candidate.includes(:user).search(params[:search]).paginate(page: params[:page])
+    else
+      Candidate.includes(:user).paginate(page: params[:page])
+    end
+    #@candidates = Candidate.filter(params.slice(:name, :activity, :city))
   end
 
   def home
@@ -60,6 +65,13 @@ class CandidatesController < ApplicationController
       @professional_situations = ProfessionalSituation.order(:name)
       render 'edit'
     end
+  end
+
+  def following
+    @title = "Candidaturas"
+    @candidate  = Candidate.find(params[:id])
+    @candidates = @candidate.following.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   def candidate_params

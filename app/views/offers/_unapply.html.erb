@@ -1,0 +1,5 @@
+<%= simple_form_for(current_user.candidate.active_applications.find_by(followed_id: model.id),
+             html: { method: :delete },
+             remote: true) do |f| %>
+  <%= f.submit "Retirar candidatura", class: "btn btn-xs" %>
+<% end %>

@@ -1,0 +1,13 @@
+<%# unless current_user?(model.user) %>
+  <div id="application_form">
+  <% if current_user.candidate.following?(@offer) %>
+    <%= render 'unapply' %>
+  <% else %>
+    <%= render 'apply' %>
+  <% end %>
+  </div>
+<%# end %>
+
+<%#= model.user.name %><br>
+<%#= current_user.name %><br>
+<%#= model.user.id %>

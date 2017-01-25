@@ -7,10 +7,11 @@ class CompaniesController < ApplicationController
   def index
     #@companies = Company.includes(:user).paginate(page: params[:page])
     @companies = if params[:search]
-      Company.search(params[:search]).paginate(page: params[:page])
+      Company.includes(:user).search(params[:search]).paginate(page: params[:page])
        else
        Company.includes(:user).paginate(page: params[:page])
      end
+     #@user = Company.includes(:user).find(params[:id])
     # @companies = if params[:search]
     #   Company.includes(:user).where('user.name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
     # else
